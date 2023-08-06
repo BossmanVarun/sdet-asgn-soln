@@ -16,4 +16,4 @@ If using IntelliJ embedded Maven will do the trick.
 2. run `mvn clean test -DsuiteFile=suites/tests.xml`.
 3. Report will be generated in the `reports` folder.
 
-Test Cases are located [here]([https://github.com/abhishek-pingsafe/sdet-assignment/releases/tag/v0.0.1](https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0)https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0)
+Test Cases are located [here](https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0)
