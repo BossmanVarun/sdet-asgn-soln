@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -17,19 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 public class ReportHelper {
 
   private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+  private static String filePath;
 
   public static ExtentReports initReport() {
     String reportName =
         String.format("testReport-%s", sdf.format(new Timestamp(new Date().getTime())));
-    String filePath = System.getProperty("user.dir") + "/reports/" + reportName + ".html";
-    File file = new File(filePath);
-    try {
-      if (file.createNewFile()) {
-        log.info("File Created Successfully!");
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    filePath = System.getProperty("user.dir") + "/reports/" + reportName + ".html";
     ExtentSparkReporter sparkReporter = new ExtentSparkReporter(filePath);
     ExtentReports extent = new ExtentReports();
     extent.attachReporter(sparkReporter);
@@ -47,4 +41,14 @@ public class ReportHelper {
           Status.INFO, "<pre>Request: " + requests[i] + "\nResponse: " + responses[i] + "</pre>");
     }
   }
+
+  public static void openReport() {
+    try {
+      Desktop.getDesktop().browse(new File(filePath).toURI());
+    } catch (final IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
 }

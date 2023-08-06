@@ -63,5 +63,6 @@ public class TestNgListener implements ITestListener {
   @Override
   public void onFinish(ITestContext context) {
     report.flush();
+    ReportHelper.openReport();
   }
 }
