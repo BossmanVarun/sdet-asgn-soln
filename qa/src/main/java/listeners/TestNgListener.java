@@ -34,7 +34,6 @@ public class TestNgListener implements ITestListener {
     reqWriter = new StringWriter();
     resWriter = new StringWriter();
     reqStream = new PrintStream(new WriterOutputStream(reqWriter, "UTF-8"), true);
-    System.setOut(reqStream);
   }
 
   @Override
