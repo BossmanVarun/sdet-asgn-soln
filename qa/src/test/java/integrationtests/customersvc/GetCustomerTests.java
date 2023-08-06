@@ -16,6 +16,7 @@ import org.testng.asserts.SoftAssert;
 import pojos.Customer;
 import pojos.CustomerResponse;
 import pojos.ErrorResponse;
+import utils.Validations;
 
 @Slf4j
 public class GetCustomerTests extends CustomerBaseTest {
@@ -81,30 +82,26 @@ public class GetCustomerTests extends CustomerBaseTest {
   @Test(description = "[TC13] Check for Id not present in params")
   public void getCustomerIdParamMissingTest() {
     SoftAssert sa = new SoftAssert();
-    Response r = RestAssured.given().headers(CustomerConstants.HEADERS)
-        .log()
-        .all()
-        .get(CustomerConstants.BASE_PATH)
-        .then()
-        .log()
-        .all()
-        .extract()
-        .response();
+    Response r =
+        RestAssured.given()
+            .headers(CustomerConstants.HEADERS)
+            .log()
+            .all()
+            .get(CustomerConstants.BASE_PATH)
+            .then()
+            .log()
+            .all()
+            .extract()
+            .response();
     sa.assertEquals(r.statusCode(), 400); // Bug Here
     sa.assertEquals(r.as(ErrorResponse.class).getError(), "error while fetching customer");
     sa.assertAll();
   }
 
-  @Test(description = "[TC14] Check for empty Id")
+  @Test(description = "[TC14] Get customer details post success on creation")
   public void getCustomerPositiveTest() {
-    SoftAssert sa = new SoftAssert();
     Response r = helper.getCustomer((String) c.getId());
-    sa.assertEquals(r.statusCode(), 200); // Bug Here
-    CustomerResponse res = r.as(CustomerResponse.class);
-    sa.assertEquals((String) c.getId(), res.getId(), "Id mismatch");
-    sa.assertTrue(res.isSmsSent(), "Sms Sent mismatch");
-    sa.assertEquals((String) c.getPhoneNumber(), res.getPhoneNumber(), "PhoneNumber mismatch");
-    sa.assertEquals((String) c.getName(), res.getName(), "Name mismatch");
-    sa.assertAll();
+    Assert.assertEquals(r.statusCode(), 200); // Bug Here
+    Validations.validateCustomerDetails(r.as(CustomerResponse.class), c);
   }
 }

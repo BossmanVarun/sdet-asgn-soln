@@ -46,7 +46,8 @@ public class CustomerHelper {
   }
 
   public Response getCustomer(String id) {
-    return initReqSpec().body(new byte[]{})
+    return initReqSpec()
+        .body(new byte[] {})
         .log()
         .all()
         .queryParam("id", id)

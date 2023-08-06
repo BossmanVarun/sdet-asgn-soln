@@ -19,8 +19,8 @@ public class ReportHelper {
   private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
   public static ExtentReports initReport() {
-    String reportName = String.format("testReport-%s",
-        sdf.format(new Timestamp(new Date().getTime())));
+    String reportName =
+        String.format("testReport-%s", sdf.format(new Timestamp(new Date().getTime())));
     String filePath = "reports/" + reportName + ".html";
     File file = new File(filePath);
     try {
@@ -39,8 +39,7 @@ public class ReportHelper {
     return extent;
   }
 
-  public static void logRequestResponse(
-      ExtentTest test, StringWriter requestWriter) {
+  public static void logRequestResponse(ExtentTest test, StringWriter requestWriter) {
     String[] requests = requestWriter.toString().split("Request method:");
     String[] responses = requestWriter.toString().split("HTTP/1.1");
     for (int i = 1; i < requests.length; i++) {
@@ -48,5 +47,4 @@ public class ReportHelper {
           Status.INFO, "<pre>Request: " + requests[i] + "\nResponse: " + responses[i] + "</pre>");
     }
   }
-
 }

@@ -10,6 +10,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.time.Duration;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -19,6 +20,7 @@ import pojos.Customer;
 import pojos.CustomerResponse;
 import pojos.ErrorResponse;
 import pojos.SuccessResponse;
+import utils.Validations;
 
 @Slf4j
 public class PostCustomerTests extends CustomerBaseTest {
@@ -94,31 +96,28 @@ public class PostCustomerTests extends CustomerBaseTest {
 
   @Test(description = "[TC06] Check that sms updation occurs within time frame")
   public void smsUpdationTest() {
-    SoftAssert sa = new SoftAssert();
-    Customer c = cBuilder.id(RandomStringUtils.randomNumeric(10))
-        .name(RandomStringUtils.randomAlphabetic(20)).build();
+    Customer c =
+        cBuilder
+            .id(RandomStringUtils.randomNumeric(5))
+            .name(RandomStringUtils.randomAlphabetic(20))
+            .build();
     Response r = helper.postCustomer(c);
     Assert.assertEquals(r.statusCode(), 200);
+    AtomicReference<CustomerResponse> tst = new AtomicReference<>();
     await()
-        .atLeast(Duration.ofSeconds(10))
         .atMost(Duration.ofSeconds(20))
-        .pollInterval(Duration.ofSeconds(5))
+        .pollInterval(Duration.ofSeconds(1))
         .until(
             () -> {
-              boolean res = false;
               try {
-                CustomerResponse tst = helper.getCustomer((String) c.getId()).as(CustomerResponse.class);
-                res = tst.isSmsSent();
-                log.info(tst.toString());
-                log.info("================================================================================");
+                tst.set(helper.getCustomer((String) c.getId()).as(CustomerResponse.class));
+                return tst.get().isSmsSent();
               } catch (Exception e) {
                 log.warn("exception during getCustomer call");
               }
-              return res;
+              return false;
             });
-    sa.assertEquals(r.statusCode(), 400); // BUG here
-    sa.assertEquals(r.as(ErrorResponse.class).getError(), "name has special characters");
-    sa.assertAll();
+    Validations.validateCustomerDetails(tst.get(), c);
   }
 
   @Test(description = "[TC07] Check for bad headers")

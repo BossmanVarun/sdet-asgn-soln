@@ -39,23 +39,23 @@ public class TestNgListener implements ITestListener {
   @Override
   public void onTestSuccess(ITestResult result) {
     currentTest.pass(result.getName());
-    currentTest.log(Status.PASS,
-        MarkupHelper.createLabel(result.getName() + " PASSED ", ExtentColor.GREEN));
+    currentTest.log(
+        Status.PASS, MarkupHelper.createLabel(result.getName() + " PASSED ", ExtentColor.GREEN));
     ReportHelper.logRequestResponse(currentTest, reqWriter);
   }
 
   @Override
   public void onTestFailure(ITestResult result) {
-    currentTest.log(Status.FAIL,
-        MarkupHelper.createLabel(result.getName() + " FAILED ", ExtentColor.RED));
+    currentTest.log(
+        Status.FAIL, MarkupHelper.createLabel(result.getName() + " FAILED ", ExtentColor.RED));
     currentTest.fail(result.getThrowable());
     ReportHelper.logRequestResponse(currentTest, reqWriter);
   }
 
   @Override
   public void onTestSkipped(ITestResult result) {
-    currentTest.log(Status.SKIP,
-        MarkupHelper.createLabel(result.getName() + " SKIPPED ", ExtentColor.AMBER));
+    currentTest.log(
+        Status.SKIP, MarkupHelper.createLabel(result.getName() + " SKIPPED ", ExtentColor.AMBER));
     currentTest.fail(result.getThrowable());
     ReportHelper.logRequestResponse(currentTest, reqWriter);
   }
