@@ -21,7 +21,7 @@ public class ReportHelper {
   public static ExtentReports initReport() {
     String reportName =
         String.format("testReport-%s", sdf.format(new Timestamp(new Date().getTime())));
-    String filePath = "reports/" + reportName + ".html";
+    String filePath = System.getProperty("user.dir") + "/reports/" + reportName + ".html";
     File file = new File(filePath);
     try {
       if (file.createNewFile()) {

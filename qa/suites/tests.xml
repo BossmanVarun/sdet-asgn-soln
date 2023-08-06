@@ -3,7 +3,7 @@
   <test name="customerSvc" verbose="10">
     <parameter name="baseUrl" value="http://localhost:8080"/>
     <packages>
-      <package name="integrationtests.customersvc.*"/>
+      <package name="integrationtests.customersvc"/>
     </packages>
   </test>
 </suite>

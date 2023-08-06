@@ -19,13 +19,13 @@ public class CustomerBaseTest {
   protected final CustomerHelper helper = new CustomerHelper();
   protected CustomerBuilder cBuilder;
 
-  @BeforeClass
+  @BeforeClass(alwaysRun = true)
   @Parameters(GenericConstants.BASE_URL)
   public void initTest(@Optional String url) {
     helper.setBaseUrl(Objects.nonNull(url) ? url : "http://localhost:8080");
   }
 
-  @BeforeMethod
+  @BeforeMethod(alwaysRun = true)
   public void setUp() {
     cBuilder =
         Customer.builder()

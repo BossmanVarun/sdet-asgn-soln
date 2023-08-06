@@ -23,7 +23,7 @@ public class GetCustomerTests extends CustomerBaseTest {
 
   private Customer c;
 
-  @BeforeMethod
+  @BeforeMethod(alwaysRun = true)
   public void createTestCustomer() {
     c = cBuilder.build();
     Response r = helper.postCustomer(c);
