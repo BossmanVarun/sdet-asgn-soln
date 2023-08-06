@@ -1,0 +1,10 @@
+customers.db
+.idea
+.DS_Store
+*.log
+builds
+main
+!/qa/src/main
+/qa/reports
+target
+*.iml

@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testSuite" verbose="10">
+  <test name="customerSvc" verbose="10">
+    <parameter name="baseUrl" value="http://localhost:8080"/>
+    <packages>
+      <package name="integrationtests.customersvc"/>
+    </packages>
+  </test>
+</suite>
