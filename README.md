@@ -18,4 +18,4 @@ If using IntelliJ embedded Maven will make do.
 2. Build using embedded maven to resolve dependencies.
 3. Select suites/tests.xml and run using testng plugin.
 
-Test Cases are located [here](https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0). Bugs are highlighted in ![#f0e68c](yellow).
+Test Cases are located [here](https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0). Bugs are highlighted in yellow.
