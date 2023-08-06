@@ -2,18 +2,20 @@
 
 ### Automation Framework
 The framework is written using RestAssured with TestNG in Java.
-Extent Reports is used to generate reports in the `reports` folder.
-In order to use the framework, Java and Maven will be required.
-If using IntelliJ embedded Maven will do the trick.
+Extent Reports is used to generate reports in the `target/reports` folder.
+In order to use the framework, [Java](https://www.java.com/en/download/help/download_options.html) and [Maven](https://maven.apache.org/install.html) will be required.
+If using IntelliJ embedded Maven will make do.
 
 ## Steps:
+1. `cd` to root dir of project.
+2. Run `mvn install`. This will be create a jar for execution of tests in the `target` folder.
+3. Run `cd target` and run `java -jar qa-1.0-SNAPSHOT-jar-with-dependencies.jar`
+4. Report will be generated in the `target/reports` folder.
+5. Report can be opened in any browser.
+
+## Alternatively, if using IntelliJ:
 1. Open a new project in IntelliJ.
 2. Build using embedded maven to resolve dependencies.
 3. Select suites/tests.xml and run using testng plugin.
 
-## Alternatively, if mvn is available on the CLI:
-1. `cd` to root dir of project.
-2. run `mvn clean test -DsuiteFile=suites/tests.xml`.
-3. Report will be generated in the `reports` folder.
-
-Test Cases are located [here](https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0)
+Test Cases are located [here](https://docs.google.com/spreadsheets/d/1H0ucDBTo52b7WLIZ6gjoJt5DVoyfoS94nrb9MDoTYHM/edit#gid=0). Bugs are highlighted in ![#f0e68c](yellow).
