@@ -21,7 +21,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run go app and tests
-      run: go run main.go &
-      run: cd qa/
-      run: mvn clean install 
-      run: java -jar target/qa-1.0-SNAPSHOT-jar-with-dependencies.jar
+      run: exec.sh
