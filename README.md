@@ -6,6 +6,9 @@ Extent Reports is used to generate reports in the `target/reports` folder.
 In order to use the framework, [Java](https://www.java.com/en/download/help/download_options.html) and [Maven](https://maven.apache.org/install.html) will be required.
 If using IntelliJ embedded Maven will make do.
 
+## Pre-requisites
+1. Ensure that the application is up and running on `localhost:8080`
+
 ## Steps:
 1. `cd` to root dir of project.
 2. Run `mvn install`. This will be create a jar for execution of tests in the `target` folder.
