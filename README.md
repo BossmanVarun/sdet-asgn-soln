@@ -14,7 +14,7 @@ Run `sh exec.sh` from the root directory of the project to complete test executi
 
 ## Steps in exec.sh:
 1. Run `cd qa` 
-2. Run `mvn install`. This will be create a jar for execution of tests in the `target` folder.
+2. Run `mvn clean install`. This will be create a jar for execution of tests in the `target` folder.
 3. Run `cd target` and run `java -jar qa-1.0-SNAPSHOT-jar-with-dependencies.jar`
 4. Report will be generated in the `target/reports` folder.
 5. Report will be automatically opened post completion of test run.
